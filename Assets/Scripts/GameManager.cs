@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
-    public float powerUpTimer = 20.0f;
-    public bool playerHasPowerUp = false;
     [SerializeField] bool isGamePaused;
 
 
@@ -33,7 +31,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ManagePowerUpTimer();
+
     }
 
     public void GameOverWin()
@@ -46,17 +44,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("You Lose...");
-    }
-
-    public void ManagePowerUpTimer()
-    {
-        if(playerHasPowerUp == true)
-        {
-            powerUpTimer -= 1.0f * Time.deltaTime;
-        }
-        else if(playerHasPowerUp == false)
-        {
-            powerUpTimer = 20.0f;
-        }
     }
 }

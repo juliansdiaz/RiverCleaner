@@ -9047,7 +9047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8469629b4d2437943924446d9a35c7ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpTimer: 0
   isGamePaused: 0
 --- !u!4 &248810839
 Transform:
@@ -10308,7 +10307,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -11597,6 +11596,7 @@ GameObject:
   - component: {fileID: 2118360382}
   - component: {fileID: 2118360381}
   - component: {fileID: 2118360383}
+  - component: {fileID: 2118360388}
   - component: {fileID: 2118360385}
   - component: {fileID: 2118360386}
   - component: {fileID: 2118360387}
@@ -11778,6 +11778,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.030783415, y: -0.12313354}
   m_Size: {x: 0.81306887, y: 1.2303545}
   m_Direction: 0
+--- !u!114 &2118360388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118360380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5781cae26da1245b32a343d9f2380d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

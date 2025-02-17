@@ -14,12 +14,20 @@ public class PlayerController : MonoBehaviour
     private float vmove;
     private bool hasRecyclable;
     private bool hasOrganic;
-   private bool hasDangerous;
+    private bool hasDangerous;
     Vector3 movement;
 
     void FixedUpdate()
     {
         PlayerMove();
+    }
+
+    void Update()
+    {
+        if(PowerUp.playerHasPowerUp == false)
+        {
+            playerSpeed = 3.5f;
+        }
     }
 
     private void PlayerMove()
@@ -102,22 +110,6 @@ public class PlayerController : MonoBehaviour
             hasDangerous = true;
             Destroy(collision.gameObject);
         }
-
-        //CollectPowerUp
-        if(collision.CompareTag("Booster"))
-        {
-            GameManager.Instance.playerHasPowerUp = true;
-            Destroy(collision.gameObject);
-            playerSpeed += 2.0f;
-            GameManager.Instance.ManagePowerUpTimer();
-            if(GameManager.Instance.powerUpTimer <= 0)
-            {
-                GameManager.Instance.playerHasPowerUp = false;
-                playerSpeed = 3.5f;
-            }
-
-        }
-
     }
 
     //Leave items in correct trash can
@@ -149,6 +141,14 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlaySFX(sfx_dropItem);
             ScoreManager.Instance.contaminationLvl -= 15.0f;
             hasDangerous = false;
+        }
+
+        //CollectPowerUp
+        if (collision.gameObject.CompareTag("Booster") && PowerUp.playerHasPowerUp == false)
+        {
+            PowerUp.playerHasPowerUp = true;
+            Destroy(collision.gameObject);
+            playerSpeed += 2.0f;
         }
     }
 }
