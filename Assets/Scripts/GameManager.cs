@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
-    [SerializeField] bool isGamePaused;
-
+    bool isGamePaused = false;
 
     void Awake()
     {
@@ -22,16 +21,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            isGamePaused = !isGamePaused;
+            PauseGame();
+        }
     }
 
     public void GameOverWin()
@@ -44,5 +41,17 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("You Lose...");
+    }
+
+    void PauseGame()
+    {
+        if(isGamePaused)
+        {
+            Time.timeScale = 0;
+        }
+        else 
+        {
+            Time.timeScale = 1;
+        }
     }
 }
