@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        Time.timeScale = 0;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -33,14 +38,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOverWin()
     {
+        Time.timeScale = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Debug.Log("You win!!!");
     }
 
     public void GameOverLose()
     {
+        Time.timeScale = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Debug.Log("You Lose...");
+    }
+
+    public void StartGame()
+    {
+        Time.timeScale = 1;
     }
 
     void PauseGame()

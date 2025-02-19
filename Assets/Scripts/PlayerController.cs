@@ -146,6 +146,7 @@ public class PlayerController : MonoBehaviour
         //CollectPowerUp
         if (collision.gameObject.CompareTag("Booster") && PowerUp.playerHasPowerUp == false)
         {
+            AudioManager.Instance.PlaySFX(sfx_collectItem);
             PowerUp.playerHasPowerUp = true;
             Destroy(collision.gameObject);
             playerSpeed += 2.0f;

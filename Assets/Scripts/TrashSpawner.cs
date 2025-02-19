@@ -33,7 +33,7 @@ public class TrashSpawner : MonoBehaviour
             else if(spawnTime >= 5 && PowerUp.playerHasPowerUp == true)
             {
                 spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
-                garbageIndex = Random.Range(0, garbageObject.Length - 1); //Exclude powerUp item from spawn items
+                garbageIndex = Random.Range(0, 2); //Exclude powerUp item from spawn items
                 Instantiate(garbageObject[garbageIndex], spawnPoints[spawnIndex].position, Quaternion.identity); //Instatiate random garbage item in selected spawn point
                 spawnTime = 0; //reset spawn time
             }
