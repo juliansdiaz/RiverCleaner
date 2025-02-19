@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {get; private set;}
+    public static GameManager Instance { get; private set; }
+    [SerializeField] GameObject pauseCanvas;
     bool isGamePaused = false;
+    public float gameTime;
+
 
     void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             isGamePaused = !isGamePaused;
             PauseGame();
@@ -39,29 +42,37 @@ public class GameManager : MonoBehaviour
     public void GameOverWin()
     {
         Time.timeScale = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Debug.Log("You win!!!");
+        UIController.ShowWinScreen();
     }
 
     public void GameOverLose()
     {
         Time.timeScale = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        UIController.ShowLoseScreen();
     }
 
     public void StartGame()
     {
         Time.timeScale = 1;
+        gameTime += Time.deltaTime;
+    }
+
+    public void PlayAgain()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void PauseGame()
     {
-        if(isGamePaused)
+        if (isGamePaused)
         {
+            pauseCanvas.SetActive(true);
             Time.timeScale = 0;
         }
-        else 
+        else if (isGamePaused == false)
         {
+            pauseCanvas.SetActive(false);
             Time.timeScale = 1;
         }
     }

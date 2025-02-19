@@ -23,14 +23,14 @@ public class TrashSpawner : MonoBehaviour
         if(canSpawn)
         {
             spawnTime += Time.deltaTime; //Increase spawn time according to physics time
-            if(spawnTime >= 5 && PowerUp.playerHasPowerUp == false)
+            if(spawnTime >= 3f && PowerUp.playerHasPowerUp == false)
             {
                 spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
                 garbageIndex = Random.Range(0, garbageObject.Length); //Select garbage item randomly
                 Instantiate(garbageObject[garbageIndex], spawnPoints[spawnIndex].position, Quaternion.identity); //Instatiate random garbage item in selected spawn point
                 spawnTime = 0; //reset spawn time
             }
-            else if(spawnTime >= 5 && PowerUp.playerHasPowerUp == true)
+            else if(spawnTime >= 3f && PowerUp.playerHasPowerUp == true)
             {
                 spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
                 garbageIndex = Random.Range(0, 2); //Exclude powerUp item from spawn items
@@ -38,5 +38,7 @@ public class TrashSpawner : MonoBehaviour
                 spawnTime = 0; //reset spawn time
             }
         }
+
+        //Increase difficulty over time
     }
 }

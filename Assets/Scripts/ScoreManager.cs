@@ -43,9 +43,14 @@ public class ScoreManager : MonoBehaviour
 
     void IncreaseContamination()
     {
-        if(contaminationLvl < 100.0f)
+        if(contaminationLvl < 100.0f && GameManager.Instance.gameTime < 60.0f)
         {
             contaminationLvl += 5.0f;
+            contaminationText.text = "Contamination Level: " + contaminationLvl + "%";
+        }
+        else if(contaminationLvl < 100.0f && GameManager.Instance.gameTime < 60.0f)
+        {
+            contaminationLvl += 7.0f;
             contaminationText.text = "Contamination Level: " + contaminationLvl + "%";
         }
     }   
