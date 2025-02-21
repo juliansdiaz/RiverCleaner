@@ -77,6 +77,4 @@ public class AudioManager : MonoBehaviour
             MusicVolumeControl(PlayerPrefs.GetFloat(musicSavedValue));
         }   SFXVolumeControl(PlayerPrefs.GetFloat(sfxSavedValue)); 
     }
-
-    
 }

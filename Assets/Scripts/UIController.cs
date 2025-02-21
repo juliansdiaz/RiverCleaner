@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public Slider musicSlider, sfxSlider;
-    public static GameObject hudCanvas, mainMenuCanvas, optionsCanvas, winUICanvas, loseUICanvas;
+    public static GameObject hudCanvas, mainMenuCanvas, optionsCanvas, winUICanvas, loseUICanvas, creditsCanvas;
 
     void Start()
     {
@@ -15,6 +15,9 @@ public class UIController : MonoBehaviour
         optionsCanvas = transform.GetChild(2).gameObject;
         winUICanvas = transform.GetChild(3).gameObject;
         loseUICanvas = transform.GetChild(4).gameObject;
+        creditsCanvas = transform.GetChild(6).gameObject;
+
+        mainMenuCanvas.SetActive(true);
     }
 
     public void PlayGame()
@@ -36,6 +39,7 @@ public class UIController : MonoBehaviour
         mainMenuCanvas.SetActive(true);
         optionsCanvas.SetActive(false);
         hudCanvas.SetActive(false);
+        creditsCanvas.SetActive(false);
     }
 
     public static void ShowWinScreen()
@@ -55,6 +59,16 @@ public class UIController : MonoBehaviour
         loseUICanvas.SetActive(true);
     }
 
+    public void DisplayCredits()
+    {
+        hudCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
+        winUICanvas.SetActive(false);
+        loseUICanvas.SetActive(false);
+        creditsCanvas.SetActive(true);
+    }
+
     public void ChangeMusicVolume()
     {
         AudioManager.Instance.MusicVolumeControl(musicSlider.value);
@@ -72,9 +86,8 @@ public class UIController : MonoBehaviour
 
     public void LoadOptions()
     {
-        AudioManager.Instance.LoadSoundPreferences(); // Carga los valores guardados en AudioManager
-        musicSlider.value = PlayerPrefs.GetFloat(AudioManager.Instance.musicSavedValue); // Actualiza el slider de música
-        sfxSlider.value = PlayerPrefs.GetFloat(AudioManager.Instance.sfxSavedValue); // Actualiza el slider de efectos de sonido
+        AudioManager.Instance.LoadSoundPreferences(); 
+        musicSlider.value = PlayerPrefs.GetFloat(AudioManager.Instance.musicSavedValue); 
+        sfxSlider.value = PlayerPrefs.GetFloat(AudioManager.Instance.sfxSavedValue); 
     }
-
 }

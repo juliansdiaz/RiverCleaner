@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         gameTime += Time.deltaTime;
+        pauseCanvas.SetActive(false);
     }
 
     public void PlayAgain()
