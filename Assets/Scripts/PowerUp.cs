@@ -7,12 +7,6 @@ public class PowerUp : MonoBehaviour
     public static float timer = 20.0f;
     public static bool playerHasPowerUp = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
