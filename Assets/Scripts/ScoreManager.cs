@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance {get; private set;}
     public float contaminationLvl = 10.0f;
+    public float gameTime;
     [SerializeField] TextMeshProUGUI contaminationText;
 
     void Awake()
@@ -29,6 +30,8 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
+        gameTime += Time.deltaTime;
+
         if(contaminationLvl >= 100.0f)
         {
             GameManager.Instance.GameOverLose();
@@ -43,14 +46,14 @@ public class ScoreManager : MonoBehaviour
 
     void IncreaseContamination()
     {
-        if(contaminationLvl < 100.0f && GameManager.Instance.gameTime < 60.0f)
+        if(contaminationLvl < 100.0f && gameTime <= 30.0f)
         {
             contaminationLvl += 5.0f;
             contaminationText.text = "Contamination Level: " + contaminationLvl + "%";
         }
-        else if(contaminationLvl < 100.0f && GameManager.Instance.gameTime < 60.0f)
+        else if(contaminationLvl < 100.0f  && gameTime >= 30.0f)
         {
-            contaminationLvl += 7.0f;
+            contaminationLvl += 10.0f;
             contaminationText.text = "Contamination Level: " + contaminationLvl + "%";
         }
     }   

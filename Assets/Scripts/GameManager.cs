@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] GameObject pauseCanvas;
     bool isGamePaused = false;
-    public float gameTime;
-
 
     void Awake()
     {
@@ -54,7 +52,6 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1;
-        gameTime += Time.deltaTime;
         pauseCanvas.SetActive(false);
     }
 

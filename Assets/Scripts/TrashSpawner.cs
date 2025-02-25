@@ -10,27 +10,29 @@ public class TrashSpawner : MonoBehaviour
     public int spawnIndex;
     public int garbageIndex;
     public bool canSpawn = false;
+    public float gameTime; 
 
     // Update is called once per frame
     void Update()
     {
-        canSpawn = true;  
-        SpawnGarbage(); 
+        canSpawn = true;
+        SpawnGarbage();
+        gameTime += Time.deltaTime;
     }
 
     void SpawnGarbage()
     {
-        if(canSpawn)
+        if (canSpawn && gameTime <= 30.0f)
         {
             spawnTime += Time.deltaTime; //Increase spawn time according to physics time
-            if(spawnTime >= 3f && PowerUp.playerHasPowerUp == false)
+            if (spawnTime >= 4.5f && PowerUp.playerHasPowerUp == false)
             {
                 spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
                 garbageIndex = Random.Range(0, garbageObject.Length); //Select garbage item randomly
                 Instantiate(garbageObject[garbageIndex], spawnPoints[spawnIndex].position, Quaternion.identity); //Instatiate random garbage item in selected spawn point
                 spawnTime = 0; //reset spawn time
             }
-            else if(spawnTime >= 3f && PowerUp.playerHasPowerUp == true)
+            else if (spawnTime >= 4.5f && PowerUp.playerHasPowerUp == true)
             {
                 spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
                 garbageIndex = Random.Range(0, 2); //Exclude powerUp item from spawn items
@@ -38,7 +40,22 @@ public class TrashSpawner : MonoBehaviour
                 spawnTime = 0; //reset spawn time
             }
         }
-
-        //Increase difficulty over time
+        else if (canSpawn && gameTime >= 30.0f)
+        {
+            if (spawnTime >= 2.5f && PowerUp.playerHasPowerUp == false)
+            {
+                spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
+                garbageIndex = Random.Range(0, garbageObject.Length); //Select garbage item randomly
+                Instantiate(garbageObject[garbageIndex], spawnPoints[spawnIndex].position, Quaternion.identity); //Instatiate random garbage item in selected spawn point
+                spawnTime = 0; //reset spawn time
+            }
+            else if (spawnTime >= 2.5f && PowerUp.playerHasPowerUp == false)
+            {
+                spawnIndex = Random.Range(0, spawnPoints.Length); //Select spawn point randomly
+                garbageIndex = Random.Range(0, 2); //Exclude powerUp item from spawn items
+                Instantiate(garbageObject[garbageIndex], spawnPoints[spawnIndex].position, Quaternion.identity); //Instatiate random garbage item in selected spawn point
+                spawnTime = 0; //reset spawn time
+            }
+        }
     }
 }
