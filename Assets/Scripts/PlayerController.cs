@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Variables
     [SerializeField] Rigidbody2D playerRB;
     [SerializeField] Animator playerAnimator;
     [SerializeField] ParticleSystem[] collected_Ps;
@@ -19,11 +20,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        PlayerMove();
+        PlayerMove(); //Call PlayerMove method
     }
 
     void Update()
     {
+        //Increase player speed if Power Up is collected
         if(PowerUp.playerHasPowerUp == false)
         {
             playerSpeed = 3.5f;
@@ -36,8 +38,9 @@ public class PlayerController : MonoBehaviour
         hmove = Input.GetAxis("Horizontal");
         vmove = Input.GetAxis("Vertical");
 
-        movement = new Vector3(hmove, vmove, 0f).normalized;
+        movement = new Vector3(hmove, vmove, 0f).normalized; //Set movement direction as a Vector
 
+        //Move the player in movement vector according to movement parameters
         playerRB.MovePosition(transform.localPosition + movement * playerSpeed * Time.fixedDeltaTime);
         HandleAnimations();
     }

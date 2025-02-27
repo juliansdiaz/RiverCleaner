@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TrashSpawner : MonoBehaviour
 {
+    //Variables
     [SerializeField] GameObject[] garbageObject;
     public Transform[] spawnPoints;
     public float spawnTime;
@@ -12,11 +13,10 @@ public class TrashSpawner : MonoBehaviour
     public bool canSpawn = false;
     public float gameTime; 
 
-    // Update is called once per frame
     void Update()
     {
         canSpawn = true;
-        SpawnGarbage();
+        SpawnGarbage(); 
         gameTime += Time.deltaTime;
     }
 
